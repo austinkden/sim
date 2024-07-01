@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>METAR Display</title>
+    <title>Sim Tools</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Current METAR for KDEN</h1>
-        <div id="metar">Loading...</div>
+        <h1>WX: METAR</h1>
+        <input type="text" id="airportCode" placeholder="Airport Code">
+        <button id="fetchMetarBtn">Fetch METAR</button>
+        <div id="metar">Enter an airport code and select "Fetch METAR" to show a METAR.</div>
     </div>
     <script src="script.js"></script>
 </body>
