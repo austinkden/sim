@@ -3,44 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>METAR Data</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        #metar {
-            background-color: #f4f4f4;
-            padding: 10px;
-            border: 1px solid #ddd;
-            margin-top: 20px;
-        }
-    </style>
+    <title>METAR Display</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Current METAR for KDEN</h1>
-    <div id="metar">Loading...</div>
-
-    <script>
-        async function fetchMetar() {
-            try {
-                const response = await fetch('fetch_metar.php');
-                const text = await response.text();
-                
-                // Extract METAR data using regex
-                const metarMatch = text.match(/KDEN\s+\d{6}Z\s+[^<\n\r]+/);
-                if (metarMatch && metarMatch[0]) {
-                    document.getElementById('metar').innerText = metarMatch[0];
-                } else {
-                    document.getElementById('metar').innerText = 'METAR data not found.';
-                }
-            } catch (error) {
-                document.getElementById('metar').innerText = 'Error fetching METAR data.';
-                console.error('Error fetching METAR data:', error);
-            }
-        }
-
-        fetchMetar();
-    </script>
+    <div class="container">
+        <h1>Current METAR for KDEN</h1>
+        <div id="metar">Loading...</div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
