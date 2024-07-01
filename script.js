@@ -18,13 +18,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    fetchMetarBtn.addEventListener('click', () => {
+    function fetchMetarForInput() {
         const airportCode = airportCodeInput.value.trim().toUpperCase();
         if (airportCode) {
             metarElement.textContent = 'Loading...';
             fetchMetar(airportCode);
         } else {
             metarElement.textContent = 'Please enter a valid airport code';
+        }
+    }
+
+    fetchMetarBtn.addEventListener('click', fetchMetarForInput);
+
+    airportCodeInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            fetchMetarForInput();
         }
     });
 });
