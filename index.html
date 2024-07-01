@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METAR Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #metar {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Current METAR for KDEN</h1>
+    <div id="metar">Loading...</div>
+
+    <script>
+        async function fetchMetar() {
+            try {
+                const response = await fetch('https://en.allmetsat.com/metar-taf/north-america.php?icao=KDEN');
+                const text = await response.text();
+                
+                // Extract METAR data using regex
+                const metarMatch = text.match(/<span class="metar">(.*?)<\/span>/);
+                if (metarMatch && metarMatch[1]) {
+                    document.getElementById('metar').innerText = metarMatch[1];
+                } else {
+                    document.getElementById('metar').innerText = 'METAR data not found.';
+                }
+            } catch (error) {
+                document.getElementById('metar').innerText = 'Error fetching METAR data.';
+                console.error('Error fetching METAR data:', error);
+            }
+        }
+
+        fetchMetar();
+    </script>
+</body>
+</html>
